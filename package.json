@@ -1,0 +1,40 @@
+{
+  "name": "power-mode-reporter.vitest",
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.2",
+  "description": "Vitest's dot reporter with configurable symbols and optional macOS sounds for test run outcomes",
+  "type": "module",
+  "license": "MIT",
+  "author": "Richard Jones",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nomasprime/power-mode-reporter.vitest.git"
+  },
+  "bugs": "https://github.com/nomasprime/power-mode-reporter.vitest/issues",
+  "homepage": "https://github.com/nomasprime/power-mode-reporter.vitest#readme",
+  "keywords": ["vitest", "reporter", "watch", "terminal"],
+  "engines": { "node": "^22.12.0 || ^24.0.0 || >=26.0.0" },
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "pnpm run build && node --test test/integration.test.mjs",
+    "verify:package": "pnpm run build && node scripts/verify-package.mjs",
+    "check": "pnpm run typecheck && pnpm test && pnpm run test:integration && pnpm run verify:package",
+    "prepack": "pnpm run build"
+  },
+  "peerDependencies": { "vitest": "^4.1.11 || ^5.0.2" },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "5.0.2"
+  }
+}
